@@ -121,3 +121,25 @@ retaHorizontal ((x,y),(z,k))
 
 -- Lista 2:
 
+intervalo :: Int -> Int -> [Int]
+intervalo a b
+        | a==b = [a]
+        |otherwise = [x | x <- [a..b]]
+
+repetidos:: [Int] -> [Int]
+repetidos [] = []
+repetidos (a:as) = [a,a] ++ repetidos as
+
+ehDivisivel :: Int-> Int -> Bool
+ehDivisivel x y
+            |x `mod`y == 0 = True
+            |otherwise = False
+            
+divisores :: Int -> [Int]
+divisores x = [y | y <- [1..x], ehDivisivel x y == True]
+
+ordena :: [Int] -> [Int]
+ordena [] = []
+ordena [x] = [x]
+ordena y = [minimum y] ++ (ordena (delete(minimum y) y))
+
